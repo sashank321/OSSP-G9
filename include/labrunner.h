@@ -2,6 +2,6 @@
 #define LABRUNNER_H
 
 #define LABRUNNER_NAME "LabRunner"
-#define VERSION "1.0"
+#define VERSION "2.0"
 
 #endif

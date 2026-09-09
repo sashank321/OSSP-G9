@@ -17,6 +17,12 @@ LabRunner is a Linux-based laboratory execution and monitoring system developed 
 - Automatic buffer expansion using realloc()
 - Proper memory cleanup using free()
 
+## Week 3 Features
+
+- Command parsing using strtok()
+- Dynamic argv[] construction
+- Modular parser implementation
+- Ready for process execution with execvp()
 ## LabRunner Architecture
 
 LabRunner is a Linux-based laboratory execution and monitoring system developed in **C for Linux** using **POSIX system calls and APIs**. It provides an interactive command-line environment for executing and managing laboratory programs while implementing core Operating System concepts such as process creation, process synchronization, pipes, I/O redirection, signals, job control, multithreading, and resource monitoring.

@@ -1,0 +1,44 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    name: Build, Lint & Automated Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc make valgrind
+
+      - name: Compile project
+        run: |
+          make clean || true
+          make all
+
+      - name: Verify build artifact exists
+        run: |
+          test -f bin/labrunner
+          chmod +x bin/labrunner
+
+      - name: Run automated test suite
+        run: |
+          chmod +x tests/test_runner.sh
+          ./tests/test_runner.sh
+
+      - name: Memory leak validation (Valgrind)
+        run: |
+          echo "Testing memory safety on exit command..."
+          printf "exit\n" | valgrind --leak-check=full --error-exitcode=1 ./bin/labrunner
+          
+          echo "Testing memory safety with multiple tokens..."
+          printf "echo testing labrunner memory allocation\nexit\n" | valgrind --leak-check=full --error-exitcode=1 ./bin/labrunner

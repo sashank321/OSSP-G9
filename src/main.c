@@ -6,6 +6,7 @@
 #include "../include/input.h"
 #include "../include/parser.h"
 #include "../include/process.h"
+#include "../include/builtin.h"
 
 int main()
 {
@@ -30,8 +31,10 @@ int main()
 
         tokens = parse_line(line);
 
-
-         execute(tokens);
+        if(execute_builtin(tokens) == 0)
+        {
+            execute(tokens);
+        }
 
         free_tokens(tokens);
         free(line);

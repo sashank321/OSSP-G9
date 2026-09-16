@@ -7,6 +7,7 @@
 #include "../include/parser.h"
 #include "../include/process.h"
 #include "../include/builtin.h"
+#include "../include/signals.h"
 
 int main()
 {
@@ -16,6 +17,7 @@ int main()
     printf("=====================================\n");
     printf("%s Version %s\n", LABRUNNER_NAME, VERSION);
     printf("=====================================\n");
+initialize_signals();
 
     while(1)
     {

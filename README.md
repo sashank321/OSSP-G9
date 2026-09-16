@@ -31,6 +31,23 @@ LabRunner is a Linux-based laboratory execution and monitoring system developed 
 - Parent-child synchronization using waitpid()
 - Error handling using perror()
 
+## Week 5 Features
+
+- Built-in command support
+- cd
+- pwd
+- help
+- clear
+- exit
+- Environment variables
+
+## Week 6 Features
+
+- Signal handling
+- SIGINT support
+- SIGCHLD support
+- Zombie process cleanup
+- Shell survives Ctrl+C
 ## LabRunner Architecture
 
 LabRunner is a Linux-based laboratory execution and monitoring system developed in **C for Linux** using **POSIX system calls and APIs**. It provides an interactive command-line environment for executing and managing laboratory programs while implementing core Operating System concepts such as process creation, process synchronization, pipes, I/O redirection, signals, job control, multithreading, and resource monitoring.

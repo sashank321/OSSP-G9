@@ -48,6 +48,31 @@ LabRunner is a Linux-based laboratory execution and monitoring system developed 
 - SIGCHLD support
 - Zombie process cleanup
 - Shell survives Ctrl+C
+
+## Week 7 Features
+
+- Anonymous pipes (`pipe()`)
+- Input/output redirection between processes (`dup2()`)
+- Two-command pipelines (`cmd1 | cmd2`)
+- Inter-Process Communication (IPC) using file descriptors
+
+## Week 8 Features
+
+- Memory leak detection using Valgrind
+- Debugging support with GDB flags (`-g`)
+- AddressSanitizer (`asan`) build target in Makefile
+- Defensive programming practices & system call error checks
+- Improved resource cleanup and process handling
+
+## Week 9 Features
+
+- File descriptor management
+- Output redirection (`>`)
+- Input redirection (`<`)
+- Append redirection (`>>`)
+- Error redirection (`2>`)
+- File handling using `open()`, `close()`, and `dup2()`
+
 ## LabRunner Architecture
 
 LabRunner is a Linux-based laboratory execution and monitoring system developed in **C for Linux** using **POSIX system calls and APIs**. It provides an interactive command-line environment for executing and managing laboratory programs while implementing core Operating System concepts such as process creation, process synchronization, pipes, I/O redirection, signals, job control, multithreading, and resource monitoring.

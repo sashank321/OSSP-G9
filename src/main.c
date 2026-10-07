@@ -8,6 +8,20 @@
 #include "../include/process.h"
 #include "../include/builtin.h"
 #include "../include/signals.h"
+#include "../include/pipes.h"
+#include "../include/redirect.h"
+
+static void tokenize(char *str, char **argv)
+{
+    int i = 0;
+    char *token = strtok(str, " \t\n");
+    while (token != NULL)
+    {
+        argv[i++] = token;
+        token = strtok(NULL, " \t\n");
+    }
+    argv[i] = NULL;
+}
 
 int main()
 {
@@ -17,7 +31,7 @@ int main()
     printf("=====================================\n");
     printf("%s Version %s\n", LABRUNNER_NAME, VERSION);
     printf("=====================================\n");
-initialize_signals();
+    initialize_signals();
 
     while(1)
     {
@@ -25,20 +39,44 @@ initialize_signals();
 
         line = read_line();
 
-        if(strcmp(line, "exit") == 0)
+        if (strchr(line, '|') != NULL)
         {
-            free(line);
-            break;
+            char *argv1[64];
+            char *argv2[64];
+            char *left = strtok(line, "|");
+            char *right = strtok(NULL, "|");
+
+            if (left == NULL || right == NULL)
+            {
+                printf("Invalid pipe command\n");
+                free(line);
+                continue;
+            }
+
+            tokenize(left, argv1);
+            tokenize(right, argv2);
+            execute_pipe(argv1, argv2);
         }
-
-        tokens = parse_line(line);
-
-        if(execute_builtin(tokens) == 0)
+        else
         {
-            execute(tokens);
-        }
+            if (strcmp(line, "exit") == 0)
+            {
+                free(line);
+                break;
+            }
 
-        free_tokens(tokens);
+            tokens = parse_line(line);
+
+            if (execute_builtin(tokens) == 0)
+            {
+                if (execute_redirection(tokens) == 0)
+                {
+                    execute(tokens);
+                }
+            }
+
+            free_tokens(tokens);
+        }
         free(line);
     }
 
@@ -46,3 +84,4 @@ initialize_signals();
 
     return 0;
 }
+

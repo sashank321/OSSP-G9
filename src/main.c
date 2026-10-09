@@ -10,6 +10,7 @@
 #include "../include/signals.h"
 #include "../include/pipes.h"
 #include "../include/redirect.h"
+#include "../include/thread.h"
 
 static void tokenize(char *str, char **argv)
 {
@@ -32,6 +33,8 @@ int main()
     printf("%s Version %s\n", LABRUNNER_NAME, VERSION);
     printf("=====================================\n");
     initialize_signals();
+    start_monitor_thread();
+
 
     while(1)
     {

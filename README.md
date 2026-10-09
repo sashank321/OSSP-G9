@@ -73,6 +73,15 @@ LabRunner is a Linux-based laboratory execution and monitoring system developed 
 - Error redirection (`2>`)
 - File handling using `open()`, `close()`, and `dup2()`
 
+## Week 10 Features
+
+- POSIX thread support
+- Background monitoring thread
+- `pthread_create()` & `pthread_detach()` / `pthread_join()`
+- Mutex synchronization principles
+- Race condition awareness & dynamic concurrency
+
+
 ## LabRunner Architecture
 
 LabRunner is a Linux-based laboratory execution and monitoring system developed in **C for Linux** using **POSIX system calls and APIs**. It provides an interactive command-line environment for executing and managing laboratory programs while implementing core Operating System concepts such as process creation, process synchronization, pipes, I/O redirection, signals, job control, multithreading, and resource monitoring.
